@@ -1,9 +1,11 @@
 from sanic import Sanic
 from sanic.response import text
 from sanic_session import InMemorySessionInterface
+from sanic_jinja2 import SanicJinja2
 
 
 app = Sanic()
+jinja = SanicJinja2(app)
 session_interface = InMemorySessionInterface()
 
 @app.middleware('request')
@@ -27,7 +29,7 @@ async def index(request):
 
     request['session']['foo'] += 1
 
-    return text(request['session']['foo'])
+    return jinja.render('index.html', request, greetings='Hello, sanic!')
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000, debug=True)
