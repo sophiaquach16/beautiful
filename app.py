@@ -8,17 +8,6 @@ app = Sanic()
 jinja = SanicJinja2(app)
 session_interface = InMemorySessionInterface()
 
-@app.route("/admin/product")
-def view_products_list(request):
-    return jinja.render('admin_product_list.html', request) # render is returning the webpage
-
-@app.route("/admin/product/<id>")
-def view_prodct(request, id):
-    return jinja.render('admin_product.html', request)
-
-@app.route("/admin/login")
-def view_login(request):
-    return jinja.render('admin_login.html', request)
 
 @app.middleware('request')
 async def add_session_to_request(request):
@@ -32,6 +21,22 @@ async def save_session(request, response):
     # after each request save the session,
     # pass the response to set client cookies
     await session_interface.save(request, response)
+
+
+@app.route("/admin/product")
+def view_products_list(request):
+    return jinja.render('admin_product_list.html', request) # render is returning the webpage
+
+
+@app.route("/admin/product/<id>")
+def view_product(request, id):
+    return jinja.render('admin_product.html', request)
+
+
+@app.route("/admin/login")
+def view_login(request):
+    return jinja.render('admin_login.html', request)
+
 
 @app.route("/")
 async def index(request):
