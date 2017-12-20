@@ -1,0 +1,23 @@
+{
+    "products": [
+        {
+            "company": "Benefit", 
+            "description": "It is beautiful.", 
+            "id": "ec709316-2f8a-4080-92d6-084d0c497467", 
+            "name": "Super Potato Item", 
+            "price": 225, 
+            "size": 30, 
+            "unit": "ml"
+        },
+        {
+            "company": "Lululemon", 
+            "description": "It is a beautiful pant.", 
+            "id": "e123", 
+            "name": "Super Potato Pant", 
+            "price": 98, 
+            "size": 0.25, 
+            "unit": "kg"
+        }
+    ], 
+    "users": []
+}
