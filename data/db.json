@@ -8,7 +8,7 @@
             "price": 225, 
             "size": 30, 
             "unit": "ml"
-        },
+        }, 
         {
             "company": "Lululemon", 
             "description": "It is a beautiful pant.", 
@@ -18,6 +18,5 @@
             "size": 0.25, 
             "unit": "kg"
         }
-    ], 
-    "users": []
+    ]
 }

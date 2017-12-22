@@ -2,7 +2,7 @@ from sanic import Sanic
 from sanic.response import text
 from sanic_session import InMemorySessionInterface
 from sanic_jinja2 import SanicJinja2
-
+import data.db
 
 app = Sanic()
 jinja = SanicJinja2(app)
@@ -25,12 +25,25 @@ async def save_session(request, response):
 
 @app.route("/admin/product")
 def view_products_list(request):
-    return jinja.render('admin_product_list.html', request) # render is returning the webpage
+    products = data.db.ProductsAcessor('data/db.json')
+    products.load()
+    return jinja.render('admin_product_list.html', request, items=products.items) # render is returning the webpage
 
 
 @app.route("/admin/product/<id>")
 def view_product(request, id):
-    return jinja.render('admin_product.html', request)
+    products = data.db.ProductsAcessor('data/db.json')
+    products.load()
+    return jinja.render('admin_product.html', 
+                        request, 
+                        productId=id, 
+                        company=products.items[id].company,
+                        name=products.items[id].name,
+                        price=products.items[id].price,
+                        size=products.items[id].size,
+                        unit=products.items[id].unit,
+                        description=products.items[id].description
+                        )
 
 
 @app.route("/admin/login")

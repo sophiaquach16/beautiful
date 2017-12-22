@@ -2,14 +2,15 @@ import json
 import uuid
 
 class Product:
-    id = ""
-    price = 0.00
-    company = ""
-    code = ""
-    name = ""
-    size = 0
-    unit = ""
-    description = "Lol"
+    def __init(self):
+        self.id = ""
+        self.price = 0.00
+        self.company = ""
+        self.code = ""
+        self.name = ""
+        self.size = 0
+        self.unit = ""
+        self.description = "Lol"
 
 class ProductsAcessor: # what you are going to use to connect your product objects with the json file
     def __init__(self, file_path):
@@ -56,14 +57,14 @@ class ProductsAcessor: # what you are going to use to connect your product objec
         del self.items[productId]
 
 
-pa = ProductsAcessor("db.json")
-pa.load() # called only once in the web app, started at initialization in app
+# pa = ProductsAcessor("db.json")
+# pa.load() # called only once in the web app, started at initialization in app
 
-# pa.delete("ec709316-2f8a-4080-92d6-084d0c497467") this deletes
+# pa.delete("ec709316-2f8a-4080-92d6-084d0c497467") 
 # pa.items["ec709316-2f8a-4080-92d6-084d0c497467"].name = "Super Potato Item" this modifies
 # pa.items["ec709316-2f8a-4080-92d6-084d0c497467"].price = 225 this modifies
 
 # these bottom two methods can be called many times, each together
 # pa.add(pa.items["ec709316-2f8a-4080-92d6-084d0c497467"])
 
-pa.save()
+# pa.save()
