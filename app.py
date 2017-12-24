@@ -1,5 +1,5 @@
 from sanic import Sanic
-from sanic.response import text
+from sanic.response import text, redirect
 from sanic_session import InMemorySessionInterface
 from sanic_jinja2 import SanicJinja2
 import data.db
@@ -30,7 +30,7 @@ def view_products_list(request):
     return jinja.render('admin_product_list.html', request, items=products.items) # render is returning the webpage
 
 
-@app.route("/admin/product/<id>")
+@app.route("/admin/product/<id>", methods=['GET'])
 def view_product(request, id):
     products = data.db.ProductsAcessor('data/db.json')
     products.load()
@@ -40,6 +40,16 @@ def view_product(request, id):
                         productId=id, 
                         )
 
+@app.route("/admin/product/<id>", methods=['DELETE'])
+def controller_product_delete(request, id):
+    products = data.db.ProductsAcessor('data/db.json')
+    products.load()
+    if id in products.items:
+        products.delete(id)
+        products.save()
+        return redirect(app.url_for('view_products_list'))
+    else:
+        return text("This product does not exist", status=404)
 
 @app.route("/admin/login")
 def view_login(request):
