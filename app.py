@@ -34,6 +34,22 @@ def view_products_list(request):
 def view_product_create(request):
     return jinja.render('admin_product_create.html', request)
 
+@app.route("/admin/controllers/product-create/", methods=['POST'])
+def controller_product_create(request):
+    product_data = request.form
+    product = data.db.Product()
+    product.name = product_data["name"][0]
+    product.company = product_data["company"][0]
+    product.price = float(product_data["price"][0])
+    product.size = float(product_data["size"][0])
+    product.unit = product_data["unit"][0]
+    product.description = product_data["description"][0]
+
+    products = data.db.ProductsAcessor('data/db.json')
+    products.load()
+    products.add(product)
+    products.save()
+    return redirect(app.url_for('view_products_list'))
 
 @app.route("/admin/product/<id>", methods=['GET'])
 def view_product(request, id):

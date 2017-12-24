@@ -2,7 +2,7 @@ import json
 import uuid
 
 class Product:
-    def __init(self):
+    def __init__(self):
         self.id = ""
         self.price = 0.00
         self.company = ""

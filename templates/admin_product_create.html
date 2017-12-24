@@ -3,15 +3,15 @@
 
     <div class="starter-template">
 
-        <form class="product-form">
+        <form class="product-form" action="{{url_for('controller_product_create')}}" method="POST">
             <h1>Time to create a new beautiful product...</h1>
             <div class="form-group">
                 <label style="color: white" for="company">Company</label>
-                <input class="form-control" name="company" type="text" id="company" required pattern="\w+">
+                <input class="form-control" name="company" type="text" id="company" required>
             </div>
             <div class="form-group">
                 <label style="color: white" for="name">Name</label>
-                <input class="form-control" name="name" type="text" id="name" required pattern="\w+">
+                <input class="form-control" name="name" type="text" id="name" required>
             </div>
             <div class="form-group">
                 <label style="color: white" for="size">Size</label>

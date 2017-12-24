@@ -1,3 +1,14 @@
 {
-    "products": []
+    "products": [
+        {
+            "code": "",
+            "company": "Luluemon",
+            "description": "Comfortable pants!",
+            "id": "d99e4e93-6ef3-4491-979e-e67cef5be978",
+            "name": "Wunder Under",
+            "price": 98.0,
+            "size": 50.0,
+            "unit": "g"
+        }
+    ]
 }
