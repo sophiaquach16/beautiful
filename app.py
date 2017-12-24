@@ -36,13 +36,8 @@ def view_product(request, id):
     products.load()
     return jinja.render('admin_product.html', 
                         request, 
+                        product=products.items[id],
                         productId=id, 
-                        company=products.items[id].company,
-                        name=products.items[id].name,
-                        price=products.items[id].price,
-                        size=products.items[id].size,
-                        unit=products.items[id].unit,
-                        description=products.items[id].description
                         )
 
 
