@@ -3,12 +3,11 @@
   <main role="main" class="container">
 
     <div class="starter-template">
-      <h1>Product list</h1>
-      <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+      <h1><font color="white">Beautiful things we have to offer...</font></h1>
       <ul>
         {% for key in items %}
           <li>
-            <a href="{{url_for('view_product', id=key)}}">
+            <a style="color: white" href="{{url_for('view_product', id=key)}}">
               {{items[key].name}}
             </a>
           </li>
