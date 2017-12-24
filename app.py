@@ -30,6 +30,11 @@ def view_products_list(request):
     return jinja.render('admin_product_list.html', request, items=products.items) # render is returning the webpage
 
 
+@app.route("/admin/product/create")
+def view_product_create(request):
+    return jinja.render('admin_product_create.html', request)
+
+
 @app.route("/admin/product/<id>", methods=['GET'])
 def view_product(request, id):
     products = data.db.ProductsAcessor('data/db.json')
