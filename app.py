@@ -40,7 +40,7 @@ def view_product(request, id):
                         productId=id, 
                         )
 
-@app.route("/admin/product/<id>", methods=['DELETE'])
+@app.route("/admin/controllers/product-delete/<id>", methods=['POST'])
 def controller_product_delete(request, id):
     products = data.db.ProductsAcessor('data/db.json')
     products.load()
