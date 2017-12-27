@@ -3,7 +3,7 @@
   <main role="main" class="container">
 
     <div class="starter-template">
-      <h1><font color="white">Beautiful things we have to offer...</font></h1>
+      <h1>Beautiful things we have to offer...</h1>
       <ul>
         {% for key in items %}
           <li>
@@ -14,6 +14,21 @@
         {% endfor %}
       </ul>
     </div>
+    
 
   </main>
+
+  <style>
+    .starter-template {
+        padding: 40px;
+        background: black;
+        opacity: 0.8;
+        margin: 20px;
+        border-radius: 10px;
+    }
+
+    .starter-template h1 {
+        color: #007bff;
+    }
+</style>
 {% endblock %}
