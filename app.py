@@ -3,6 +3,7 @@ from sanic.response import text, redirect
 from sanic_session import InMemorySessionInterface
 from sanic_jinja2 import SanicJinja2
 import data.db
+import data.db2
 
 app = Sanic()
 jinja = SanicJinja2(app)
@@ -30,6 +31,27 @@ def view_products_list(request):
     return jinja.render('admin_product_list.html', request, items=products.items) # render is returning the webpage
 
 
+@app.route("/user/account/create")
+def view_account_create(request):
+    return jinja.render('user_account_create.html', request)
+
+@app.route("/user/controllers/account-create", methods=['POST'])
+def controller_account_create(request):
+    user_data = request.form
+    user = data.db2.User()
+    user.name = user_data["name"][0]
+    user.email = user_data["email"][0]
+    user.number_and_street = user_data["address"][0]
+    user.city = user_data["city"][0]
+    user.province_or_state = user_data["province"][0]
+    user.password = user_data["password"][0]
+
+    users = data.db2.UsersAcessor('data/db.json')
+    users.load()
+    users.add(user)
+    users.save()
+    return redirect(app.url_for('view_login'))
+    
 @app.route("/admin/product/create")
 def view_product_create(request):
     return jinja.render('admin_product_create.html', request)
@@ -52,8 +74,8 @@ def controller_product_create(request):
     return redirect(app.url_for('view_products_list'))
 
 
-@app.route("/user/controllers/product-update/<id>", methods=['POST'])
-def product_update(request, id):
+@app.route("/admin/product-update/<id>", methods=['GET'])
+def view_product_update(request, id):
     products = data.db.ProductsAcessor('data/db.json')
     products.load()
     return jinja.render('admin_product_update.html', 
@@ -62,7 +84,7 @@ def product_update(request, id):
                         productId=id, 
                         )
 
-@app.route("/user/controller/product-update-2/<id>", methods=['POST'])
+@app.route("/user/controllers/product-update/<id>", methods=['POST'])
 def controller_product_update(request, id):
     product_data = request.form
 

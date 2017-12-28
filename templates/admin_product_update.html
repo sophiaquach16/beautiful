@@ -1,0 +1,55 @@
+{% extends 'admin_base.html' %} {% block body %}
+<main role="main" class="container">
+
+    <div class="starter-template">
+
+        <form action="{{url_for('controller_product_update', id=product.id)}}" method="POST">
+            <h1>Time to create a modify beautiful product...</h1>
+            <div class="form-group">
+                <label style="color: white" for="company">Company</label>
+                <input class="form-control" value="{{product.company}}" name="company" type="text" id="company" required>
+            </div>
+            <div class="form-group">
+                <label style="color: white" for="name">Name</label>
+                <input class="form-control" value="{{product.name}}" name="name" type="text" id="name" required>
+            </div>
+            <div class="form-group">
+                <label style="color: white" for="size">Size</label>
+                <input class="form-control" value={{product.size}} name="size" type="number" step="any" id="size" required>
+            </div>
+            <div class="form-group">
+                <label style="color: white" for="unit">Unit</label>
+                <select class="form-control" value={{product.unit}} id="unit" name="unit">
+                    <option>mL</option>
+                    <option>oz</option>
+                    <option>g</option>
+                    <option>kg</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label style="color: white" for="price">Price</label>
+                <input class="form-control" value="{{product.price}}" name="price" step="0.01" type="number" id="price">
+            </div>
+            <div class="form-group">
+                <label style="color: white" for="exampleFormControlTextarea1">Description</label>
+                <input class="form-control" value="{{product.description}}" name="description" id="description" rows="2" required></input>
+            </div>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+        </form>
+
+    </div>
+    <style>
+        .starter-template {
+            padding: 40px;
+            background: black;
+            opacity: 0.8;
+            margin: 20px;
+            border-radius: 10px;
+        }
+
+        .starter-template h1 {
+            color: #007bff;
+        }
+    </style>
+</main>
+{% endblock %}
