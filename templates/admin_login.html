@@ -2,6 +2,11 @@
 {% block body %}
 
 <form class="container" action="{{url_for('controller_account_login')}}" method="POST">
+    {% if error_message %}
+      <div class="alert alert-danger" role="alert">
+        {{error_message}}
+      </div>
+    {% endif %}
     <br/>
     <div class=form>
       <div class="form-group">

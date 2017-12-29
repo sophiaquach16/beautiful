@@ -92,11 +92,13 @@ def controller_account_login(request):
     user_data = request.form
     email = user_data["email"][0]
     if (email in users.temp_items) == False:
+        request['session']["error_message"] = "User not found"
         return redirect(app.url_for('view_login'))
     correct_pw = users.temp_items[email].password
     if (correct_pw == user_data["password"][0]):
         return redirect(app.url_for('view_logged_in'))
     else: 
+        request['session']["error_message"] = "Invalid password"
         return redirect(app.url_for('view_login'))
 
 @app.route("/user/account")
@@ -145,7 +147,11 @@ def controller_product_delete(request, id):
 
 @app.route("/admin/login")
 def view_login(request):
-    return jinja.render('admin_login.html', request)
+    error_message = None
+    if 'error_message' in request['session']:
+        error_message = request['session']['error_message']
+        del request['session']['error_message']
+    return jinja.render('admin_login.html', request, error_message=error_message)
 
 
 @app.route("/")
