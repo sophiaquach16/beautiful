@@ -84,6 +84,26 @@ def view_product_update(request, id):
                         productId=id, 
                         )
 
+@app.route("/user/controllers/logging-in", methods=['POST'])
+def controller_account_login(request):
+    users = data.db2.UsersAcessor('data/db.json')
+    users.load()
+
+    user_data = request.form
+    email = user_data["email"][0]
+    if (email in users.temp_items) == False:
+        return redirect(app.url_for('view_login'))
+    correct_pw = users.temp_items[email].password
+    if (correct_pw == user_data["password"][0]):
+        return redirect(app.url_for('view_logged_in'))
+    else: 
+        return redirect(app.url_for('view_login'))
+
+@app.route("/user/account")
+def view_logged_in(request):
+    return jinja.render('user_home.html', request)
+
+
 @app.route("/user/controllers/product-update/<id>", methods=['POST'])
 def controller_product_update(request, id):
     product_data = request.form

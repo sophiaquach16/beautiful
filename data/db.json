@@ -3,7 +3,7 @@
         {
             "code": "",
             "company": "L'Occitane",
-            "description": "The Light Comforting Cream, with its fine and non-greasy texture, is formulated with 5% shea butter to answer the essential needs of normal to combination skin, including sensitive skin types. Lastingly moisturized (48h)**, skin is supple and soft. As protected against external aggressions, skin stays comfortable all day long.In Burkina Faso, women produce shea butter by hand. While one might expect this technique to weaken and damage the skin, in reality it leaves it incredibly soft. L'OCCITANE discovered that the shea butter produced in Burkina Faso using traditional methods is particularly rich in omega 6 and karitene. These molecules have exceptional properties and help to moisturize, nourish and give extra protection to the skin every day.",
+            "description": "Hello beautiful! The Light Comforting Cream, with its fine and non-greasy texture, is formulated with 5% shea butter to answer the essential needs of normal to combination skin, including sensitive skin types. Lastingly moisturized (48h)**, skin is supple and soft. As protected against external aggressions, skin stays comfortable all day long.In Burkina Faso, women produce shea butter by hand. While one might expect this technique to weaken and damage the skin, in reality it leaves it incredibly soft. L'OCCITANE discovered that the shea butter produced in Burkina Faso using traditional methods is particularly rich in omega 6 and karitene. These molecules have exceptional properties and help to moisturize, nourish and give extra protection to the skin every day.",
             "id": "73f868fa-4d3b-45df-b1d8-ac5e9a0d61ae",
             "name": "Shea Light Comforting Cream",
             "price": 34.0,
@@ -15,7 +15,6 @@
         {
             "city": "Montreal",
             "email": "sophiaquach16@gmail.com",
-            "id": "46c9c37a-c825-4ec0-85e7-6dd88544f8be",
             "name": "Sophia",
             "number_and_street": "2638 rue Workman",
             "password": "sophia",
@@ -24,7 +23,6 @@
         {
             "city": "Montreal",
             "email": "potato@gmail.com",
-            "id": "b7c288b7-050f-494b-b0b2-3f7e47e3d18e",
             "name": "Mr Potato",
             "number_and_street": "2638 rue Potato",
             "password": "potato",
@@ -33,7 +31,6 @@
         {
             "city": "Montreal",
             "email": "pineapple@gmail.com",
-            "id": "5e05cf3c-f1bf-4b5c-adc4-7fee17d50fb8",
             "name": "Mr Pineapple",
             "number_and_street": "2638 rue Pineapple",
             "password": "pineapple",
@@ -42,7 +39,6 @@
         {
             "city": "Pizza",
             "email": "pizza@gmail.com",
-            "id": "597f04d4-93d3-4dd1-bfe3-588f965cfbd7",
             "name": "Pizza Man",
             "number_and_street": "900 rue Pizza",
             "password": "pizza",

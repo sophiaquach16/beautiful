@@ -3,7 +3,6 @@ import uuid
 
 class User:
     def __init__(self):
-        self.id = ""
         self.name = ""
         self.email = ""
         self.number_and_street = ""
@@ -23,16 +22,15 @@ class UsersAcessor:
             self.__add_from_json(user) 
 
     def __add_from_json(self, value): 
-        key = value["id"] 
+        key = value["email"] 
         user = User()
-        user.id = key
         user.name = value["name"]
         user.email = value["email"]
         user.number_and_street = value["number_and_street"]
         user.city = value["city"]
         user.province_or_state = value["province_or_state"]
         user.password = value["password"]
-        self.temp_items[key] = user 
+        self.temp_items[user.email] = user 
 
     def save(self): # creates a new empty array of data
         temp_item_data = []
@@ -45,11 +43,9 @@ class UsersAcessor:
         
 
     def add(self, p): # adding to a new product in memory collection
-        if p.id is "":
-            p.id = str(uuid.uuid4())
-        elif p.id in self.temp_items: # check if any of the items in the json file have this same key
-            raise Exception("Already has a product with this ID")
-        self.temp_items[p.id] = p
+        if p.email in self.temp_items: # check if any of the items in the json file have this same key
+            raise Exception("An account with this email already exists.")
+        self.temp_items[p.email] = p
 
-    def delete(self, userId):
-        del self.temp_items[userId]
+    def delete(self, userEmail):
+        del self.temp_items[userEmail]
