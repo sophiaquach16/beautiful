@@ -35,8 +35,8 @@ def view_products_list(request):
 def view_account_create(request):
     error_message = None
     if 'error_message' in request['session']:
-        error_message = request['session']['error_message']
-        del request['session']['error_message']
+        error_message = request['session']["error_message"]
+        del request['session']["error_message"]
     return jinja.render('user_account_create.html', request, error_message=error_message)
 
 @app.route("/user/controllers/account-create", methods=['POST'])
@@ -67,6 +67,9 @@ def controller_account_create(request):
     
 @app.route("/admin/product/create")
 def view_product_create(request):
+    if not ('user' in request['session']):
+        return redirect(app.url_for('view_login'))
+
     return jinja.render('admin_product_create.html', request)
 
 @app.route("/admin/controllers/product-create/", methods=['POST'])
@@ -89,6 +92,9 @@ def controller_product_create(request):
 
 @app.route("/admin/product-update/<id>", methods=['GET'])
 def view_product_update(request, id):
+    if not ('user' in request['session']):
+        return redirect(app.url_for('view_login'))
+    
     products = data.db.ProductsAcessor('data/db.json')
     products.load()
     return jinja.render('admin_product_update.html', 
@@ -105,10 +111,11 @@ def controller_account_login(request):
     user_data = request.form
     email = user_data["email"][0]
     if (email in users.temp_items) == False:
-        request['session']["error_message"] = "User not found"
+        request['session']['error_message'] = "User not found"
         return redirect(app.url_for('view_login'))
     correct_pw = users.temp_items[email].password
-    if (correct_pw == user_data["password"][0]):
+    if (correct_pw == user_data['password'][0]):
+        request['session']['user'] = users.temp_items[email]
         return redirect(app.url_for('view_logged_in'))
     else: 
         request['session']["error_message"] = "Invalid password"
@@ -116,7 +123,7 @@ def controller_account_login(request):
 
 @app.route("/user/account")
 def view_logged_in(request):
-    return jinja.render('user_home.html', request)
+    return redirect(app.url_for('view_products_list'))
 
 
 @app.route("/user/controllers/product-update/<id>", methods=['POST'])
@@ -149,6 +156,9 @@ def view_product(request, id):
 
 @app.route("/admin/controllers/product-delete/<id>", methods=['POST'])
 def controller_product_delete(request, id):
+    if not ('user' in request['session']):
+        return redirect(app.url_for('view_login'))
+    
     products = data.db.ProductsAcessor('data/db.json')
     products.load()
     if id in products.items:
@@ -162,8 +172,8 @@ def controller_product_delete(request, id):
 def view_login(request):
     error_message = None
     if 'error_message' in request['session']:
-        error_message = request['session']['error_message']
-        del request['session']['error_message']
+        error_message = request['session']["error_message"]
+        del request['session']["error_message"]
     return jinja.render('admin_login.html', request, error_message=error_message)
 
 
