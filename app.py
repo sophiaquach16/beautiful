@@ -33,7 +33,11 @@ def view_products_list(request):
 
 @app.route("/user/account/create")
 def view_account_create(request):
-    return jinja.render('user_account_create.html', request)
+    error_message = None
+    if 'error_message' in request['session']:
+        error_message = request['session']['error_message']
+        del request['session']['error_message']
+    return jinja.render('user_account_create.html', request, error_message=error_message)
 
 @app.route("/user/controllers/account-create", methods=['POST'])
 def controller_account_create(request):
@@ -41,6 +45,15 @@ def controller_account_create(request):
     user = data.db2.User()
     user.name = user_data["name"][0]
     user.email = user_data["email"][0]
+    
+    users = data.db2.UsersAcessor('data/db.json')
+    users.load()
+    user_data = request.form
+    email = user_data["email"][0]
+    if (user.email in users.temp_items):
+        request['session']["error_message"] = "An account with this email already exists."
+        return redirect(app.url_for('view_account_create'))
+
     user.number_and_street = user_data["address"][0]
     user.city = user_data["city"][0]
     user.province_or_state = user_data["province"][0]

@@ -4,6 +4,11 @@
     <div class="starter-template">
 
         <form class="product-form" action="{{url_for('controller_account_create')}}" method="POST">
+            {% if error_message %}
+                <div class="alert alert-danger" role="alert">
+                  {{error_message}}
+                </div>
+            {% endif %}
             <h1>Time to create a new beautiful user...</h1>
             <div class="form-group">
                 <label style="color: white" for="name">Name</label>
