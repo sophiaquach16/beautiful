@@ -165,6 +165,16 @@ def view_product(request, id):
                         productId=id, 
                         )
 
+@app.route("/admin/controllers/account-logout", methods=['GET'])
+def controller_logout(request):
+    user = None
+    error_message = None
+    if 'user' in request['session']:
+        user = request['session']['user']
+        del request['session']['user']
+        error_message = "You are logged out"
+    return jinja.render('admin_login.html', request, error_message=error_message)
+
 @app.route("/admin/controllers/product-delete/<id>", methods=['POST'])
 def controller_product_delete(request, id):
     if not ('user' in request['session']):
