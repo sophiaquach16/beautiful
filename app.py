@@ -28,7 +28,10 @@ async def save_session(request, response):
 def view_products_list(request):
     products = data.db.ProductsAcessor('data/db.json')
     products.load()
-    return jinja.render('admin_product_list.html', request, items=products.items) # render is returning the webpage
+    if not ('user' in request['session']):
+        return jinja.render('admin_product_list.html', request, items=products.items)
+    else:
+        return jinja.render('admin_product_list_in.html', request, items=products.items) # render is returning the webpage
 
 
 @app.route("/user/account/create")
@@ -94,10 +97,11 @@ def controller_product_create(request):
 def view_product_update(request, id):
     if not ('user' in request['session']):
         return redirect(app.url_for('view_login'))
-    
+
     products = data.db.ProductsAcessor('data/db.json')
     products.load()
-    return jinja.render('admin_product_update.html', 
+
+    return jinja.render('admin_product_update_in.html', 
                         request, 
                         product=products.items[id],
                         productId=id, 
@@ -148,7 +152,14 @@ def controller_product_update(request, id):
 def view_product(request, id):
     products = data.db.ProductsAcessor('data/db.json')
     products.load()
-    return jinja.render('admin_product.html', 
+    if not ('user' in request['session']):
+        return jinja.render('admin_product.html', 
+                        request, 
+                        product=products.items[id],
+                        productId=id, 
+                        )
+    else:
+        return jinja.render('admin_product_in.html', 
                         request, 
                         product=products.items[id],
                         productId=id, 
