@@ -19,12 +19,14 @@
                     <a class="nav-link" href="{{url_for('view_products_list')}}">Products</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('controller_logout')}}">Logout</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="{{url_for('view_product_create')}}">New Item</a>
                 </li>
         </div>
+
+        <form class="form-inline my-2 my-lg-0">
+                <a href="{{url_for('controller_logout')}}" class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</a>
+        </form>
+
     </nav>
     {% block body %}{% endblock %}
 </body>
