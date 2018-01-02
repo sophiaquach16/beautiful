@@ -9,7 +9,7 @@ class User:
         self.city = ""
         self.province_or_state = ""
         self.password_salt = ""
-        self.passowrd_hash = ""
+        self.password_hash = ""
 
 class UsersAcessor: 
     def __init__(self, file_path):
@@ -31,7 +31,7 @@ class UsersAcessor:
         user.city = value["city"]
         user.province_or_state = value["province_or_state"]
         user.password_salt = value["password_salt"]
-        user.passowrd_hash = value["passowrd_hash"]
+        user.password_hash = value["password_hash"]
         self.temp_items[user.email] = user 
 
     def save(self): # creates a new empty array of data

@@ -65,7 +65,7 @@ def controller_account_create(request):
     password = user_data["password"][0]
 
     user.password_salt = uuid.uuid4().hex
-    user.passowrd_hash = hashlib.sha512(password.encode('utf-8') + user.password_salt.encode('utf-8')).hexdigest()
+    user.password_hash = hashlib.sha512(password.encode('utf-8') + user.password_salt.encode('utf-8')).hexdigest()
 
     users = data.db2.UsersAcessor('data/db.json')
     users.load()
@@ -123,7 +123,7 @@ def controller_account_login(request):
     if (email in users.temp_items) == False:
         request['session']['error_message'] = "User not found"
         return redirect(app.url_for('view_login'))
-    correct_pw = users.temp_items[email].passowrd_hash
+    correct_pw = users.temp_items[email].password_hash
     if (correct_pw == hashlib.sha512(user_data['password'][0].encode('utf-8') + users.temp_items[email].password_salt.encode('utf-8')).hexdigest()):
         request['session']['user'] = users.temp_items[email]
         return redirect(app.url_for('view_logged_in'))
