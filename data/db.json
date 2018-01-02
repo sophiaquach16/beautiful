@@ -13,28 +13,13 @@
     ],
     "users": [
         {
-            "city": "Montreal",
-            "email": "sophiaquach16@gmail.com",
-            "name": "Sophia",
-            "number_and_street": "2638 rue Workman",
-            "password": "sophia",
-            "province_or_state": "Qu\u00e9bec"
-        },
-        {
-            "city": "Montreal",
-            "email": "potato@gmail.com",
-            "name": "Mr Potato",
-            "number_and_street": "2638 rue Potato",
-            "password": "potato",
-            "province_or_state": "Qu\u00e9bec"
-        },
-        {
-            "city": "Pizza",
-            "email": "pizza@gmail.com",
-            "name": "Pizza Man",
-            "number_and_street": "900 rue Pizza",
-            "password": "pizza",
-            "province_or_state": "Qu\u00e9bec"
+            "city": "User",
+            "email": "newuser@gmail.com",
+            "name": "User",
+            "number_and_street": "123 rue User",
+            "passowrd_hash": "e0b4da31c7f936fc55a309a81e1d918b080d5980e5348f85dfd413c85a890eebb1999b624338b406612c59301877497089189c5df2d13621ee04d57f71ceb469",
+            "password_salt": "1468ecc64e5a4dbbbad02b4ff988a012",
+            "province_or_state": "User"
         }
     ]
 }
